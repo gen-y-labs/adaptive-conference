@@ -1,0 +1,18 @@
+# Local development cluster: k3d-adaptive-conference-cluster.
+# Radar display name: adaptive-conference-cluster; cloud.clusterName is its stable ID.
+# The token is held separately in the radar/radar-cloud-config Secret.
+cloud:
+  enabled: true
+  url: wss://api.radarhq.io/agent
+  insecureSkipVerify: false
+  clusterName: vXGNNNKY-qg
+  existingSecret: radar-cloud-config
+auth:
+  mode: proxy
+rbac:
+  helm: true
+  secrets: true
+  podExec: true
+  portForward: true
+  metrics: true
+  selfUpgrade: true
