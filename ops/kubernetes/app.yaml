@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: adaptive-conference
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: conference-data
+  namespace: adaptive-conference
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adaptive-conference
+  namespace: adaptive-conference
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: adaptive-conference
+  template:
+    metadata:
+      labels:
+        app: adaptive-conference
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsNonRoot: true
+      containers:
+        - name: web
+          image: ghcr.io/gen-y-labs/adaptive-conference@sha256:REPLACE_WITH_IMAGE_DIGEST
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000
+          env:
+            - name: DATABASE_PATH
+              value: /data/conference.sqlite
+            - name: ASSET_DIR
+              value: /data/assets
+            - name: APP_ORIGIN
+              value: https://conference.example.invalid
+            - name: DASH0_OTLP_HTTP_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: adaptive-conference-telemetry
+                  key: otlp-http-endpoint
+                  optional: true
+            - name: DASH0_DATASET
+              valueFrom:
+                secretKeyRef:
+                  name: adaptive-conference-telemetry
+                  key: dataset
+                  optional: true
+            - name: DASH0_INGESTION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: adaptive-conference-telemetry
+                  key: ingestion-token
+                  optional: true
+          readinessProbe:
+            httpGet:
+              path: /api/health/ready
+              port: http
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /api/health/live
+              port: http
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: conference-data
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adaptive-conference
+  namespace: adaptive-conference
+spec:
+  selector:
+    app: adaptive-conference
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

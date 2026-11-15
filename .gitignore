@@ -5,3 +5,9 @@ node_modules/
 .next/
 .DS_Store
 
+data/
+*.tsbuildinfo
+playwright-report/
+test-results/
+coverage/
+
