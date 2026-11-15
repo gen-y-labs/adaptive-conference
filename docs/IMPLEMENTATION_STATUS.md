@@ -6,7 +6,7 @@ Checkpoint recorded November 9, 2026. Engineering work has started against the [
 
 The App Router application presents guest previews, selectable text/picture/ASL preferences, a screen-reader-readable agenda, device-local opt-in settings, error/coverage messages, and an immutable release read model. The operator package validator, SQLite migrations, asset staging, version-checked publisher, read API, byte-range media route, freshness polling, limited telemetry endpoint, container, and persistent-volume manifest are implemented.
 
-The demo fixture is the fictional Inclusive Design Summit with three topic-relevant sessions and two rooms. `/kiosk` is the entrance touchscreen flow; its default general-audience view keeps the full agenda and format controls, while `/accessibility` presents a minimal text-first agenda with a session selector and help. The kiosk has a start-over action and no preference-saving option on the shared device. Picture sequences are local illustrations rather than independently reviewed content. The operator manifest records pictures as not prepared and ASL orientation/session content as awaiting review. A complete initial release cannot be published until permitted content has the required review.
+The demo fixture is the fictional Inclusive Design Summit with three topic-relevant sessions and two rooms. `/kiosk` is an entrance screen with a transparent sample-match flow for Maya, Jordan, and Sam, plus a general visitor entry. The demo does not access a camera or identify visitors; a live installation needs an opted-in identity service connected to visitor-saved preferences, and must not infer accessibility needs from appearance. The attendee's entire visual presentation changes with the selected sample profile. `/accessibility` remains a minimal text-first agenda with a session selector and help. Picture sequences are local illustrations rather than independently reviewed content. The operator manifest records pictures as not prepared and ASL orientation/session content as awaiting review. A complete initial release cannot be published until permitted content has the required review.
 
 ## Acceptance register
 
@@ -18,7 +18,7 @@ The demo fixture is the fictional Inclusive Design Summit with three topic-relev
 | A04 | Not run | Client version/hash/snapshot checks reject stale or mismatched responses; delayed-response browser race test remains to be added. |
 | A05 | Partial | Parser and production ARM64 container checks cover HEAD length, hash-checked asset delivery, and a byte-range response. The video fixture is only synthetic bytes: real encoded playback/seeking, codec support, and obsolete-media behavior remain blocked on a permitted clip. |
 | A06 | Blocked | No ASL content source/usage permission/fluent reviewer or reviewed picture sequence. Synthetic test metadata is not content review. |
-| A07 | Partial | Playwright covers kiosk format selection, session switching, start-over, minimal accessibility view, organizer status, preference reset, and blocked storage. Axe reports no WCAG 2.1 A/AA violations in the tested preview. Manual keyboard walkthrough and Safari/VoiceOver remain unperformed. |
+| A07 | Partial | Playwright covers the sample-match screen, distinct attendee views, the minimal accessibility view, organizer status, preference reset, and blocked storage. Axe reports no WCAG 2.1 A/AA violations in the tested preview. Manual keyboard walkthrough and Safari/VoiceOver remain unperformed. |
 | A08 | Partial | Axe/contrast check passes for the tested screen; responsive CSS, text alternatives, visible focus and reduced-motion rules are present. 200% zoom, narrow-device visual inspection, signing-space, and manual contrast checks are pending. |
 | A09 | Partial | Browser tests cover opt-in preference storage, reset, and blocked-storage operation; settings are schema-checked and scoped by event. Production browser-secret scan remains pending. |
 | A10 | Partial | Polling, no-store reads, hash/version checks, stale labeling, and asset failure states are implemented. Offline recovery and delayed/racing update behavior remain unverified in a browser. |
@@ -30,7 +30,7 @@ The demo fixture is the fictional Inclusive Design Summit with three topic-relev
 These checks have passed on Node 24.22.2 on the local macOS ARM64 environment:
 
 - `npm run check` — typecheck, eight tests, and the Next.js production build passed
-- `npm run test:browser -- --workers=1` — six Playwright tests passed, including kiosk journeys, minimal accessibility view, organizer agenda, axe, and blocked-storage flows
+- `npm run test:browser -- --workers=1` — seven Playwright tests passed, including the sample-match screen, distinct kiosk views, minimal accessibility view, organizer agenda, axe, and blocked-storage flow
 - `npm run test:container` — ARM64 Linux image, synthetic content publish, SQLite reads, media HEAD/range/hash, replacement, and backup restore all passed
 - `npm audit --omit=dev` — zero production dependency findings
 - `npm run content -- validate content/inclusive-design-summit --allow-incomplete` — three sessions/two rooms, picture states `not_prepared`, and ASL orientation/session states `awaiting_review`

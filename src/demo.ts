@@ -1,6 +1,6 @@
 import type { Bundle } from './domain/contracts';
-// Fictional Inclusive Design conference for the local kiosk demo. The picture sequences are
-// simple illustrations; ASL is intentionally unavailable until permitted content is reviewed.
+// Fictional Inclusive Design conference for the local kiosk demo. Picture artwork is shown as
+// generated local-preview content; the package representations remain awaiting review.
 export const demo: Bundle = {
   schemaVersion: 1, canonicalizationVersion: 1, releaseNumber: 1, publishedAt: '2026-11-09T16:00:00.000Z', changes: [],
   conference: { id: 'inclusive-design-summit', slug: 'inclusive-design-summit', title: 'Inclusive Design Summit',
@@ -27,24 +27,25 @@ export const demo: Bundle = {
   representations: [
     ...[
       { id: 'people-first-design', steps: [
-        ['People', 'Start by considering people with different ways of moving, sensing, communicating, and learning.'],
-        ['Listen', 'Ask people what helps and where they meet barriers.'],
-        ['Include', 'Use what you learn while making the first design choices.'],
+        ['Plan with people', 'A group plans together around a table. A green floor path points toward Main Hall.'],
       ] },
       { id: 'accessible-digital-services', steps: [
-        ['Read', 'Use clear words and a page structure that is easy to follow.'],
-        ['Test', 'Try the same task using a keyboard and assistive technology.'],
-        ['Improve', 'Find a barrier and change the design to make the task easier to complete.'],
+        ['Try accessible digital tasks', 'A person uses a computer and keyboard at a workstation, then follows blue arrows toward Workshop Studio.'],
       ] },
       { id: 'welcoming-wayfinding', steps: [
-        ['Notice', 'Look for visible signs and landmarks at the entrance.'],
-        ['Find', 'Use clear signs and maps to choose the route to a room.'],
-        ['Arrive', 'Follow the green markers to Main Hall.'],
+        ['Find the next place', 'Two people consult a map, and green floor arrows lead toward Main Hall.'],
       ] },
     ].flatMap(session => [
       { id: `${session.id}-pictures-preview`, subjectId: session.id, subjectType: 'session' as const, format: 'pictures' as const, language: 'en' as const,
         sourceHash: '0'.repeat(64), availability: 'available' as const,
-        steps: session.steps.map(([shortLabel, description], i) => ({ assetHash: String(i + 1).repeat(64), shortLabel, description })) },
+        steps: session.steps.map(([shortLabel, description]) => ({
+          assetHash: session.id === 'people-first-design'
+            ? 'e21ae3c2135d7c260fe09d1e228944279f7060b258def95367154ffa27fbbb6d'
+            : session.id === 'accessible-digital-services'
+              ? '48e73b071f4dd442893b7d2f8ec9ba5f26c6bf4afbd6d0972c0a309a745200f1'
+              : '8f7f09b43ebbc0b11bc16c09bc50fd16e0361864e5a0ab00ac04cdf6fe96aaba',
+          shortLabel, description,
+        })) },
       { id: `${session.id}-sign-preview`, subjectId: session.id, subjectType: 'session' as const, format: 'sign' as const, language: 'ase' as const,
         sourceHash: '0'.repeat(64), availability: 'awaiting_review' as const,
         script: 'Permitted American Sign Language content and fluent review are not yet available.' },

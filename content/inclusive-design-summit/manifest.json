@@ -64,8 +64,14 @@
       "format": "pictures",
       "language": "en",
       "sourceHash": "9b9c5111447b02beace534e2c70e30a3823f481297991344a68f8cb2a3ae4442",
-      "availability": "not_prepared",
-      "steps": []
+      "availability": "awaiting_review",
+      "steps": [
+        {
+          "assetHash": "e21ae3c2135d7c260fe09d1e228944279f7060b258def95367154ffa27fbbb6d",
+          "shortLabel": "Plan with people",
+          "description": "A group plans together around a table. A green floor path points toward Main Hall."
+        }
+      ]
     },
     {
       "id": "people-first-sign",
@@ -84,8 +90,14 @@
       "format": "pictures",
       "language": "en",
       "sourceHash": "ed4fb8e12407da839d5645d17b95a3bcfd11e96b7205170827341a49cf4e2ace",
-      "availability": "not_prepared",
-      "steps": []
+      "availability": "awaiting_review",
+      "steps": [
+        {
+          "assetHash": "48e73b071f4dd442893b7d2f8ec9ba5f26c6bf4afbd6d0972c0a309a745200f1",
+          "shortLabel": "Try accessible digital tasks",
+          "description": "A person uses a computer and keyboard at a workstation, then follows blue arrows toward Workshop Studio."
+        }
+      ]
     },
     {
       "id": "digital-services-sign",
@@ -104,8 +116,14 @@
       "format": "pictures",
       "language": "en",
       "sourceHash": "a993aa8f850a031c658c5b38424f9e2f768faa44e05f5d70181aae33b93afc80",
-      "availability": "not_prepared",
-      "steps": []
+      "availability": "awaiting_review",
+      "steps": [
+        {
+          "assetHash": "8f7f09b43ebbc0b11bc16c09bc50fd16e0361864e5a0ab00ac04cdf6fe96aaba",
+          "shortLabel": "Find the next place",
+          "description": "Two people consult a map, and green floor arrows lead toward Main Hall."
+        }
+      ]
     },
     {
       "id": "wayfinding-sign",
@@ -125,9 +143,67 @@
       "language": "ase",
       "sourceHash": "30f95ca2daadfb0210c726e8d7a1aa194d8e83ed6da4b0613ad565fbddb5f42c",
       "availability": "awaiting_review",
-      "script": "Permitted American Sign Language orientation content and fluent review are not yet available."
+      "script": "Combined ASL video supplied for all three sessions; awaiting fluent review, publication permission confirmation, and confirmation that it provides complete orientation coverage.",
+      "assetHash": "77f88db229991fc5102f8f7e88380b97d9a78baf9abd9c95b013ec2f01b8f516"
+    },
+    {
+      "id": "event-overview-pictures",
+      "subjectId": "inclusive-design-summit",
+      "subjectType": "orientation",
+      "format": "pictures",
+      "language": "en",
+      "sourceHash": "30f95ca2daadfb0210c726e8d7a1aa194d8e83ed6da4b0613ad565fbddb5f42c",
+      "availability": "awaiting_review",
+      "steps": [
+        {
+          "assetHash": "d298e984642c0918e12921603943652fdc0bf8103c52e945e8ca955159e9345e",
+          "shortLabel": "Start at the welcome desk",
+          "description": "A welcome desk offers help. Green and blue floor paths lead from the entrance toward event spaces."
+        }
+      ]
     }
   ],
-  "assets": [],
+  "assets": [
+    {
+      "sha256": "77f88db229991fc5102f8f7e88380b97d9a78baf9abd9c95b013ec2f01b8f516",
+      "path": "media/ids_asl_video.mp4",
+      "mime": "video/mp4",
+      "bytes": 2940574,
+      "permissionRef": "User-provided clip; publication permission not yet confirmed",
+      "provenance": "Copied by the project owner from conference/inclusive-design-summit /ids_asl_video.mp4"
+    },
+    {
+      "sha256": "d298e984642c0918e12921603943652fdc0bf8103c52e945e8ca955159e9345e",
+      "path": "media/ids_image_overview.jpg",
+      "mime": "image/jpeg",
+      "bytes": 237307,
+      "permissionRef": "User-provided generated image; publication permission confirmation pending",
+      "provenance": "Copied by project owner from conference/inclusive-design-summit /ids_image_overview.jpg"
+    },
+    {
+      "sha256": "e21ae3c2135d7c260fe09d1e228944279f7060b258def95367154ffa27fbbb6d",
+      "path": "media/ids_image_session_1.jpg",
+      "mime": "image/jpeg",
+      "bytes": 342520,
+      "permissionRef": "User-provided generated image; publication permission confirmation pending",
+      "provenance": "Copied by project owner from conference/inclusive-design-summit /ids_image_session_1.jpg"
+    },
+    {
+      "sha256": "48e73b071f4dd442893b7d2f8ec9ba5f26c6bf4afbd6d0972c0a309a745200f1",
+      "path": "media/ids_image_session_2.jpg",
+      "mime": "image/jpeg",
+      "bytes": 302727,
+      "permissionRef": "User-provided generated image; publication permission confirmation pending",
+      "provenance": "Copied by project owner from conference/inclusive-design-summit /ids_image_session_2.jpg"
+    },
+    {
+      "sha256": "8f7f09b43ebbc0b11bc16c09bc50fd16e0361864e5a0ab00ac04cdf6fe96aaba",
+      "path": "media/ids_image_session_3.jpg",
+      "mime": "image/jpeg",
+      "bytes": 296181,
+      "permissionRef": "User-provided generated image; publication permission confirmation pending",
+      "provenance": "Copied by project owner from conference/inclusive-design-summit /ids_image_session_3.jpg"
+    }
+  ],
   "reviews": []
 }
